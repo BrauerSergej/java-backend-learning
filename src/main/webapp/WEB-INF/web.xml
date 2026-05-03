@@ -1,0 +1,23 @@
+<!DOCTYPE web-app PUBLIC
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<!--        Мы прописали дескриптор развертывания в web.xml, в котором мы нашему Tomcat объяснили, куда направлять -->
+<!--        запросы, связанные с домами. Благодаря этому дескриптору Tomcat понимает, что запросы, связанные -->
+<!--        с домами, надо адресовать вот этому классу и вызывать сюда соответствующие методы.-->
+<web-app>
+    <!--    Здесь мы регистрируем servlet-->
+    <servlet>
+        <!--    houseServlet — это внутреннее имя - придумываем сами - как правило оно берется тоже самое как и название класса-->
+        <servlet-name>houseServlet</servlet-name>
+        <!--    app.controller.CarServlet — это полный путь к Java-классу-->
+        <servlet-class>app.controller.HouseServlet</servlet-class>
+    </servlet>
+    <!--    Здесь мы говорим, на какой URL он отвечает-->
+    <servlet-mapping>
+        <servlet-name>houseServlet</servlet-name>
+        <!--    если пользователь откроет /houses-->
+        <url-pattern>/houses</url-pattern>
+    </servlet-mapping>
+
+</web-app>

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <!-- class: связываем Java-класс House (находится в app.domain) с таблицей house в БД -->
+    <class name="app.domain.House" table="house">
+        <!-- id - класса House - он должен знать тип данных - "java.lang.Long"-->
+        <!-- id: объявляем, какое поле будет первичным ключом (Primary Key) -->
+        <id name="id" type="java.lang.Long">
+            <!-- column: имя колонки в самой таблице базы данных -->
+            <column name="id"/>
+            <!-- generator: говорим Hibernate, что база сама будет выдавать новые ID (Auto Increment) -->
+            <generator class="identity"></generator>
+        </id>
+        <!-- property: обычное поле. Связываем поле 'color' в Java с колонкой 'color' в таблице -->
+        <property name="color" type="java.lang.String">
+            <column name="color"/>
+        </property>
+        <!-- Связываем поле 'area' (площадь) типа double -->
+        <property name="area" type="double">
+            <column name="area"/>
+        </property>
+        <!-- Связываем поле 'rooms' (количество комнат) типа int -->
+        <property name="rooms" type="int">
+            <column name="rooms"/>
+        </property>
+        <property name="year" type="int">
+            <column name="year"/>
+        </property>
+        <!-- Цена: используем BigDecimal для точности при работе с деньгами -->
+        <property name="price" type="java.math.BigDecimal">
+            <column name="price"/>
+        </property>
+    </class>
+</hibernate-mapping>

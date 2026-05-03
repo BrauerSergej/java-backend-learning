@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>g_67_houses_homewok_project</artifactId>
+    <version>1.0-SNAPSHOT</version>
+<!-- благодаря этой строчке Maven узнает, что наше приложение теперь нужно упаковывать в WAR-архив.-->
+    <packaging>war</packaging>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!-- Добавляем API для работы с сервлетами.
+     Эта зависимость нужна, чтобы использовать HttpServlet, HttpServletRequest,
+     HttpServletResponse и другие servlet-классы.
+     scope provided означает, что библиотеку предоставляет сам Tomcat,
+     поэтому в итоговый WAR/JAR она не включается. -->
+    <dependencies>
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>6.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!--  Jackson — это библиотека, которая умеет легко преобразовывать Java-объекты в JSON,
+        чтобы мы могли их куда-то передать через интернет. И она также умеет и обратное преобразование.
+        То есть, допустим, когда нам откуда-то с интернета прилетел JSON, мы его можем преобразовать
+        в Java-объект при помощи Jackson. -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.16.0</version>
+        </dependency>
+<!--        Мы подключили драйвер jdbc-->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.3</version>
+        </dependency>
+<!--Подключаем библиотеку Hibernate-->
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>6.4.4.Final</version>
+        </dependency>
+    </dependencies>
+
+</project>
