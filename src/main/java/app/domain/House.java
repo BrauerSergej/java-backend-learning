@@ -13,7 +13,6 @@ public class House {
     private int year;
     private BigDecimal price;
 
-    // Пустой конструктор
     public House() {
     }
 
@@ -83,13 +82,6 @@ public class House {
     }
 
     @Override
-    // equals - нужен для сравнения двух объектов - если его не реализовать
-    // то дома будут сравниваться по ссылкам - сравниваться будут адреса, а так будут
-    // сравниваться по характеристикам
-    // реализация метода equals дает нам сравнение Возможность такого сравнения.
-    // Мы обращаемся к одному дому, вызываем у него метод equals, передаем туда
-    // второй дом в качестве аргумента, и если дома одинаковые,
-    // метод equals дает нам true.
     public boolean equals(Object o) {
         if (!(o instanceof House house)) return false;
         return Double.compare(area, house.area) == 0 && rooms == house.rooms && year == house.year && Objects.equals(id, house.id) && Objects.equals(color, house.color) && Objects.equals(price, house.price);
