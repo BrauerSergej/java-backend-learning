@@ -12,12 +12,6 @@ import java.util.List;
 public class HouseServiceImpl implements HouseService {
 
     // private final HouseRepository repository = new HouseRepositoryList();
-    // И вот это называется принцип слабой связности. Вот если бы у нас здесь было поле не типа HouseRepository,
-    // а HouseRepositoryMap, то есть мы жестко бы привязали класс к другому классу. Это называлось бы сильная связность,
-    // и такого рекомендуют избегать. Потому что в таком случае нельзя было бы легко заменить один репозиторий на другой.
-    // А у нас здесь соблюдается принцип слабой связности. Наш класс HouseServiceImpl зависит не от другого класса,
-    // он зависит от интерфейса. И это слабая связность называется. И благодаря этому в переменную интерфейсного типа
-    // мы можем положить любой объект любого класса, главное, чтобы он реализовывал этот интерфейс.
     // private final HouseRepository repository = new HouseRepositoryJdbc();
     private final HouseRepository repository = new HouseRepositoryHibernate();
 
@@ -48,20 +42,16 @@ public class HouseServiceImpl implements HouseService {
     @Override
     public List<House> getAll() {
         List<House> houses = repository.findAll();
-        // Здесь может быть какая-либо бизнес-логика, например, фильтрация домов
         return houses;
     }
 
     @Override
     public House getById(Long id) {
-        // Может прийти null - поэтому нужна проверка
-        // Сначала проверяем входные данные
         if (id == null) {
             throw new IllegalArgumentException("Id не может быть пустым");
         }
 
         House house = repository.findById(id);
-        // Потом проверяем, есть ли объект
         if(house == null){
             throw new IllegalArgumentException("Дом с id " + id + " не найден");
         }
@@ -71,17 +61,14 @@ public class HouseServiceImpl implements HouseService {
 
     @Override
     public void deleteById(Long id) {
-        // Сначала проверяем входные данные
         if(id == null) {
             throw new IllegalArgumentException("Id не может быть пустым");
         }
 
         House house = repository.findById(id);
-        // Потом проверяем, есть ли объект
         if (house == null){
             throw new IllegalArgumentException("Дом с id " + id + " не найден");
         }
-        // Только потом работаем с репозиторием
         repository.deleteById(id);
     }
 
